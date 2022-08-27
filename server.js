@@ -14,6 +14,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
+
+//call sync() method
+const db = require("./app/models");
+db.sequelize.sync();
+
+//Connecting with database
+require("./app/routers/tutorial.routers")(app)
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
